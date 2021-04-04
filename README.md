@@ -232,6 +232,8 @@ python3 main.py --mode train_lm --text_corpus <lm_text_corpus> --lm_type <lm_typ
 ```
 where *<lm_text_corpus>* is the text corpus prepared for LM training located in the *resources/corpora* directory and *<lm_type>* refers to the type of a LM to be trained (either *forward* or *backward*). The results of this call will be stored in the *resources/language_models/custom_<lm_type>* directory.
 
+**Our pre-trained NLM embeddings can be found here**: [custom_forward](https://drive.google.com/drive/folders/18mSF0GSucSiALFSdRyQRz21tPNeUPgN_?usp=sharing) and [custom_backward](https://drive.google.com/drive/folders/1MCbojQJbL8CouCqaehm-qhjxJNf5KuBI?usp=sharing). Both directories (*custom_forward* and *custom_backward*) need to be placed in the *resources/language_models/* directory. 
+
 #### NAT Training using NLM Embeddings
 
 Previously trained NLM embeddings can be used to train a NAT model as follows:
