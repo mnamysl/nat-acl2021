@@ -56,7 +56,7 @@ The structure of the project reminds that from the original NAT framework with s
 
 * **trdg**: contains the [Text Recognition Data Generator](https://github.com/Belval/TextRecognitionDataGenerator) (TRDG) toolkit employed for text rendering.
 
-Moreover, we extended the basic NAT framework by implementing our error generation methods and included it in the extended sequence labeling model (*flair_ext/nat_sequence_tagger_model.py*). Additionally, we modified the [trainer class](./flair_ext/trainers/trainer.py) and extended the former NAT functionality contained in [robust_ner](./robust_ner).
+Moreover, we extended the basic NAT framework by implementing our error generation methods and included it in the [extended sequence labeling model](./flair_ext/nat_sequence_tagger_model.py). Additionally, we modified the [trainer class](./flair_ext/trainers/trainer.py) and extended the former NAT functionality contained in [robust_ner](./robust_ner).
 
 Furthermore, we added additional data into the [resources}(./resources) directory including [dictionaries](./resources/dictionaries) extracted from the test sets of the sequence labeling benchmarks that were used by the error correction methods, [fonts](./resources/fonts) that were utilized by the text rendering module, and edit operations and checksums required to recreate and validate the noisy sequence labeling data sets used in our experiments (cf. [conversion](./resources/conversion)). 
 
