@@ -88,6 +88,10 @@ pip install hunspell
 ```py
 sudo apt-get install python-dev libfreetype6-dev
 ```
+If you get a following error: `ModuleNotFoundError: No module named 'tkinter'` at the end of the sequence-to-sequence model training then run the following command:
+```
+sudo apt-get install python3-tk
+```
 
 ### Project Dependencies
 
@@ -205,14 +209,14 @@ The results will be stored in the *results/generated/<text_corpus>/<model_name>*
 ```
 model_<mode>_<size>
 ```
-where *<mode>* is one of the following: *errgen_tok*, *errgen_ch*, or *errcorr_tok*, and *<size>* is the size of the parallel data set (*100*, *1k*, *10k*, *100k*, *1M*, *10M*), e.g., *model_errgen_tok_100k*.
+where *mode* is one of the following: *errgen_tok*, *errgen_ch*, or *errcorr_tok*, and *size* is the size of the parallel data set (*100*, *1k*, *10k*, *100k*, *1M*, *10M*), e.g., *model_errgen_tok_100k*.
 
 #### NAT with the Sequence-to-Sequence Error Generator
 
 Having the trained error generation model, we can utilize it to train a downstream sequence labeling model *<model_name>* using NAT technique. The following command will start the stability training of a *<model_name>* on the English CoNLL 2003 training data using the error generator model stored in *results/generated/<text_corpus>/model_errgen_tok_100k/<text_corpus>_step_16000.pt*, the token-to-token generation mode, the sampling temperature 1.1, and top-k = 10 best candidates.
 
 ```
-python3 main.py --mode train --model <model_name> --corpus conll03_en --type flair+glove --errgen_model results/generated/<text_corpus>/model_errgen_tok_100k/<text_corpus>_step_16000.pt --errgen_mode errgen_tok --errgen_temp 1.1 --errgen_topk 10 --beta 1.0 --use_misspell_lut
+python3 main.py --mode train --model <model_name> --corpus conll03_en --type flair+glove --errgen_model results/generated/<text_corpus>/model_errgen_tok_100k/<text_corpus>_step_16000.pt --errgen_mode errgen_tok --errgen_temp 1.1 --errgen_topk 10 --beta 1.0
 ```
 
 The models will be stored in the *resources/taggers* directory.
