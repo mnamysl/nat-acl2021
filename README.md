@@ -1,7 +1,6 @@
 # Empirical Error Modeling Improves Robustness of Noisy Neural Sequence Labeling
 
-This repository contains the code and the data from the paper: "**Empirical Error Modeling Improves Robustness of Noisy Neural Sequence Labeling**" that was submitted to the [ACL 2021](https://2021.aclweb.org/) conference. 
-It is an extended version of the Noise-Aware Training ([NAT](https://github.com/mnamysl/nat-acl2020)) framework.
+This repository contains the code and the data from the paper: "**Empirical Error Modeling Improves Robustness of Noisy Neural Sequence Labeling**" that was accepted to appear in Findings of [ACL 2021](https://2021.aclweb.org/). This work extends the Noise-Aware Training ([NAT](https://github.com/mnamysl/nat-acl2020)) framework.
 
 
 
@@ -11,10 +10,10 @@ It is an extended version of the Noise-Aware Training ([NAT](https://github.com/
 NAT is a method that utilizes both the original and the perturbed input for training of the sequence labeling models. It improves accuracy on the data from noisy sources such as user-generated text or text produced by the Optical Character Recognition ([OCR](https://en.wikipedia.org/wiki/Optical_character_recognition)) process.
 
 ### Empirical Error Modeling
-At training time, the original NAT method used a vanilla synthetic error model to induce the noise into the error-free sentences. Although utilizing randomized error patterns during training often provided moderate improvements, we argue that the empirical error modeling would be significantly more beneficial. Our extension implements a data-driven error generator based on the sequence-to-sequence modeling paradigm. Our models were trained to solve the monotone string translation problem, akin to the error correction setting but in the opposite direction, i.e., we used an error-free sentence as input and trained the models to produce an erroneous text from it. Please refer to our paper for a more detailed explanation of our approach.
+At training time, the original NAT method uses a vanilla synthetic error model to induce the noise into the error-free sentences. Although utilizing randomized error patterns during training often provided moderate improvements, we argue that the empirical error modeling would be significantly more beneficial. Our extension implements a data-driven error generator based on the sequence-to-sequence modeling paradigm. Our models were trained to solve the monotone string translation problem, akin to the error correction setting but in the opposite direction, i.e., we used an error-free sentence as input and trained the models to produce an erroneous text. Please refer to our paper for a more detailed explanation of our approach.
 
 ### Noisy Sequence Labeling Data Sets
-Moreover, to better imitate the real-world application scenario, we generated a set of noisy data sets by applying an OCR engine on the sentences extracted from the original sequence labeling benchmarks. Our code could be readily used to produce noisy version of other sequence labeling benchmarks. We encourage the user to experiment with this functionality. We hope that our work will facilitate the future research on robustness in Natural Language Processing.
+Moreover, to better imitate the real-world application scenario, we generated a set of noisy data sets by applying an OCR engine to the sentences extracted from the original sequence labeling benchmarks. Our code could be readily used to produce noisy version of other sequence labeling data sets. We encourage the user to experiment with this functionality. We hope that our work will facilitate the future research on robustness in Natural Language Processing.
 
 
 
@@ -57,11 +56,11 @@ The structure of the project reminds that from the original NAT framework with s
 
 * **trdg**: contains the [Text Recognition Data Generator](https://github.com/Belval/TextRecognitionDataGenerator) (TRDG) toolkit employed for text rendering.
 
-Moreover, we extended the basic NAT framework by implementing our error generation methods and included it in the extended sequence labeling model (*flair_ext/nat_sequence_tagger_model.py*). Additionally, we modified the trainer class (*flair_ext/trainers/trainer.py*) and extended the former NAT functionality contained in **robust_ner** (see, e.g., *robust_ner/seq2seq.py*).
+Moreover, we extended the basic NAT framework by implementing our error generation methods and included it in the extended sequence labeling model (*flair_ext/nat_sequence_tagger_model.py*). Additionally, we modified the [trainer class](./flair_ext/trainers/trainer.py) and extended the former NAT functionality contained in [robust_ner](./robust_ner).
 
-Furthermore, we added additional data into the **resources** directory including dictionaries extracted from the test sets of the sequence labeling benchmarks that were used by the error correction methods (*resources/dictionaries*), fonts that were utilized by the text rendering module (*resources/fonts*), and edit operations and checksums required to recreate and validate the noisy sequence labeling data sets used in our experiments (*resources/conversion*). 
+Furthermore, we added additional data into the [resources}(./resources) directory including [dictionaries](./resources/dictionaries) extracted from the test sets of the sequence labeling benchmarks that were used by the error correction methods, [fonts](./resources/fonts) that were utilized by the text rendering module, and edit operations and checksums required to recreate and validate the noisy sequence labeling data sets used in our experiments (cf. [conversion](./resources/conversion)). 
 
-Note that *FLAIR*, *NA*TAS, *ONMT* and *TRDG* are not included in this repository. See the *Quick Start* section for more information about the installation of the additional dependencies.
+Note that *FLAIR*, *NATAS*, *ONMT* and *TRDG* are not included in this repository. See the [Quick Start section](README.md#getting-the-code) for more information about the installation of the additional dependencies.
 
 Please refer to the description of the remaining components [here](https://github.com/mnamysl/nat-acl2020#project-structure).
 
@@ -115,9 +114,9 @@ Please follow the instruction on these websites to get the original data:
 
 
 
-## Using the code
+## Using the Code
 
-The *main.py* python script can be used to reproduce our experiments. In this section, we present the command-line arguments and their usage.
+The [main.py](./main.py) python script can be used to reproduce our experiments. In this section, we present the command-line arguments and their usage.
 
 ### Command-Line Arguments
 
@@ -240,7 +239,7 @@ Previously trained NLM embeddings can be used to train a NAT model as follows:
 ```
 python3 main.py --model train --corpus <data_set> --model <model_name> --type <embeddings_type>
 ```
-where *<embeddings_type>* refers to the type of embeddings to be employed - *myflair* and *myflair+glove* values are in-built aliases for the custom flair embedding models. Please refer to the *init_embeddings()* function in *main.py* for further details. 
+where *<embeddings_type>* refers to the type of embeddings to be employed - *myflair* and *myflair+glove* values are in-built aliases for the custom flair embedding models. Please refer to the *init_embeddings()* function in [main.py](./main.py) for further details. 
 
 #### Error Correction using Hunspell or Natas
 
@@ -253,6 +252,19 @@ Additional remarks: *conll03_en_tess4_01* is a noisy data set generated using ou
 
 
 
+## Citing Our Work
+
+Please cite our paper when using the code:
+
+```
+TBA
+```
+
+## Authors
+
+* Marcin Namysl [dblp](https://dblp.uni-trier.de/pers/hd/n/Namysl:Marcin), [orcid](https://orcid.org/0000-0001-7066-1726)
+
 ## License
 
-This project is licensed under the MIT License - see the *LICENSE* file for details
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
