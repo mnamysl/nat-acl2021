@@ -50,9 +50,9 @@ The structure of the project reminds that from the original NAT framework with s
 
 * **onmt**: includes the [ONMT](https://github.com/OpenNMT/OpenNMT-py) toolkit that we utilized to train our sequence-to-sequence error generators and the error correction model employed by NATAS.
 
-* **pysia**: contains the code of our **Python Sentence Inter-Alignment (PySIA)** toolkit. It constitutes the core part of our contribution and contains method for sentence alignment, training data preparation, and wrapper methods for the sequence-to-sequence training.
+* [**pysia**](./pysia): contains the code of our **Python Sentence Inter-Alignment (PySIA)** toolkit. It constitutes the core part of our contribution and contains method for sentence alignment, training data preparation, and wrapper methods for the sequence-to-sequence training.
 
-* **scripts**: includes a slightly modified version of the punctuation normalization script from the [1 Billion Word Language Model Benchmark](https://www.statmt.org/lm-benchmark/) that we used in our experiments.
+* [**scripts**](./scripts): includes a slightly modified version of the punctuation normalization script from the [1 Billion Word Language Model Benchmark](https://www.statmt.org/lm-benchmark/) that we used in our experiments.
 
 * **trdg**: contains the [Text Recognition Data Generator](https://github.com/Belval/TextRecognitionDataGenerator) (TRDG) toolkit employed for text rendering.
 
