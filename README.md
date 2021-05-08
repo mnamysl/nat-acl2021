@@ -227,7 +227,9 @@ To extract the data for NLM training, we can use the following command:
 ```
 python3 main.py --mode noisy_crp --text_corpus <text_corpus>
 ```
-where the *<text_corpus>* refers to the data stored in *resources/corpora/<text_corpus>*. As a result, it will create two sub-directories: *<text_corpus>_pairs_norm_org\__<max_lines>* and *<text_corpus>_pairs_norm_rec\_<max_lines>*, where the former and the latter will contain the clean- and the noisy-part of the parallel text corpus, respectively. The *<max_lines>* parameter refers to the maximum number of lines that need to be extracted from the source text file and is unbounded by default, but it can be adjusted in the code if necessary.
+where the *<text_corpus>* refers to the data stored in *results/generated/<text_corpus>*. As a result, it will create two sub-directories: *<text_corpus>_pairs_norm_org\__<max_lines>* and *<text_corpus>_pairs_norm_rec\_<max_lines>*, where the former and the latter will contain the clean- and the noisy-part of the parallel text corpus, respectively. The *<max_lines>* parameter refers to the maximum number of lines that need to be extracted from the source text file and is unbounded by default, but it can be adjusted in the code if necessary.
+
+To utilize the generated corpora for NLM training, you need to copy them to the *resources/corpora* directory.
 
 #### NLM Embeddings Training
 
@@ -244,7 +246,7 @@ where *<lm_text_corpus>* is the text corpus prepared for LM training located in 
 
 Previously trained NLM embeddings can be used to train a NAT model as follows:
 ```
-python3 main.py --model train --corpus <data_set> --model <model_name> --type <embeddings_type>
+python3 main.py --mode train --corpus <data_set> --model <model_name> --type <embeddings_type>
 ```
 where *<embeddings_type>* refers to the type of embeddings to be employed - *myflair* and *myflair+glove* values are in-built aliases for the custom flair embedding models. Please refer to the *init_embeddings()* function in [main.py](./main.py) for further details. 
 
