@@ -26,7 +26,7 @@ def onmt_preprocess(onmt_path, input_path, data_path, mode, log, shard_size, num
     src_train_path, src_valid_path, tgt_train_path, tgt_valid_path = get_filenames_for_splits(input_path, mode, max_lines_total)
     
     log.info(f"Starting data pre-processing (shard_size={shard_size} num_threads={num_threads})..")
-    os.system(f"python3.6 {onmt_path}/onmt/bin/preprocess.py -train_src {src_train_path} -train_tgt {tgt_train_path} -valid_src {src_valid_path} " \
+    os.system(f"python3 {onmt_path}/onmt/bin/preprocess.py -train_src {src_train_path} -train_tgt {tgt_train_path} -valid_src {src_valid_path} " \
         f"-valid_tgt {tgt_valid_path} -save_data {data_path} -overwrite -dynamic_dict -shard_size {shard_size} -num_threads {num_threads} " \
         f"-src_seq_length {max_seq_len} -tgt_seq_length {max_seq_len} " \
         f"{' '.join(suffixes)}")
@@ -53,7 +53,7 @@ def onmt_train(onmt_path, data_path, model_path, mode, log, lr=1.0, max_batches=
         # Natas use ONMT v0.8.2 and had problems with ensemble model and coppy_attn
         suffixes.append("-copy_attn")            
 
-    os.system(f"python3.6 {onmt_path}/onmt/bin/train.py -data {data_path} -save_model {model_path} " \
+    os.system(f"python3 {onmt_path}/onmt/bin/train.py -data {data_path} -save_model {model_path} " \
         f"-src_word_vec_size {src_word_vec_size} -tgt_word_vec_size {tgt_word_vec_size} -encoder_type brnn -decoder_type rnn " \
         f"-learning_rate {lr} -decay_steps {decay_steps} -start_decay_steps {start_decay_steps} -valid_steps {valid_steps} " \
         f"-max_generator_batches {max_batches} -train_steps {train_steps} " \

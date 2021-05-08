@@ -1,5 +1,5 @@
 python-dateutil>=2.6.1
-torch>=1.1.0
+torch>=1.1.0,<1.8.0
 gensim>=3.4.0
 pytest>=5.3.2
 tqdm>=4.26.0
@@ -24,7 +24,7 @@ nltk>=3.5
 hunspell>=0.5.5
 tesserocr==2.5.0
 BeautifulSoup4>=4.9.1
-torchtext>=0.5.0
+torchtext>=0.5.0,<0.9.0
 configargparse>=1.2.3
 scikit-learn>=0.21.3
 opencv-python==4.1.2.30

@@ -187,7 +187,7 @@ def _generate_and_recognize(idx, text_lines, proc_params, image_dir, idx0):
             distorsion_orientation=proc_params.distorsion_orientation, is_handwritten=proc_params.is_handwritten, width=proc_params.width,
             alignment=proc_params.alignment, text_color=proc_params.text_color, orientation=proc_params.orientation, 
             space_width=proc_params.space_width, character_spacing=proc_params.character_spacing, margins=proc_params.margins, 
-            fit=proc_params.fit, output_mask=proc_params.output_mask)        
+            fit=proc_params.fit, output_mask=proc_params.output_mask, image_dir=image_dir, word_split=False)
 
         if proc_params.save_img:
             # img.save(os.path.join(image_dir, f"{idx_global:05d}.jpg")) # keep all images
