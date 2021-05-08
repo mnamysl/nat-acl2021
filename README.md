@@ -211,7 +211,7 @@ model_<mode>_<size>
 ```
 where *mode* is one of the following: *errgen_tok*, *errgen_ch*, or *errcorr_tok*, and *size* is the size of the parallel data set (*100*, *1k*, *10k*, *100k*, *1M*, *10M*), e.g., *model_errgen_tok_100k*.
 
-By default, the token-level error model will be trained. To change this behavior, e.g., to train the error correction model, we need to modify the code in the *onmt()* function in [main.py](./main.py) by uncommenting the line that correspond to the option that we need, e.g.:
+By default, the token-level error model will be trained. To change this behavior, e.g., to train the error correction model, we need to modify the code in the *onmt()* function in [main.py](./main.py) by uncommenting the line that corresponds to the option that we need, e.g.:
 
 ```
 # mode = Seq2SeqMode.ErrorGenerationCh
