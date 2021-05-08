@@ -220,7 +220,7 @@ To extract the data for NLM training, we can use the following command:
 ```
 python3 main.py --mode noisy_crp --text_corpus <text_corpus>
 ```
-where the *<text_corpus>* refers to the data stored in *resources/corpora/<text_corpus>*. As a result, it will create two sub-directories: *<text_corpus>_pairs_norm_org\__<max_lines>* and *<text_corpus>_pairs_norm_rec\_<max_lines>*, where the former and the latter will contain the clean- and the noisy-part of the parallel text corpus, respectively. The *<max_lines>* parameter refers to the maximum number of lines that need to be extracted from the source texxt file and is unbounded by default, but it can be adjusted in the code if necessary.
+where the *<text_corpus>* refers to the data stored in *resources/corpora/<text_corpus>*. As a result, it will create two sub-directories: *<text_corpus>_pairs_norm_org\__<max_lines>* and *<text_corpus>_pairs_norm_rec\_<max_lines>*, where the former and the latter will contain the clean- and the noisy-part of the parallel text corpus, respectively. The *<max_lines>* parameter refers to the maximum number of lines that need to be extracted from the source text file and is unbounded by default, but it can be adjusted in the code if necessary.
 
 #### NLM Embeddings Training
 
@@ -262,9 +262,9 @@ TBA
 
 ## Authors
 
-* Marcin Namysl [dblp](https://dblp.uni-trier.de/pers/hd/n/Namysl:Marcin), [orcid](https://orcid.org/0000-0001-7066-1726)
+* Marcin Namysl [dblp](https://dblp.uni-trier.de/pers/hd/n/Namysl:Marcin), [orcid](https://orcid.org/0000-0001-7066-1726), [Google Scholar](https://scholar.google.com/citations?user=JeY8avoAAAAJ&hl=en&oi=sra), [Semantic Scholar](https://www.semanticscholar.org/author/Marcin-Namysl/134442417)
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
 
