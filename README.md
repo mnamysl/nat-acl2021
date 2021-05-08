@@ -93,10 +93,10 @@ sudo apt-get install python-dev libfreetype6-dev
 
 Please download the following projects and move them to the working directory as described below:
 
-1. Download the *FLAIR* framework (v0.5) from [here](https://github.com/zalandoresearch/flair/releases/tag/v0.5), rename the *flair-0.5* directory to *flair* and move it to the working directory.
-2. Download the *NATAS* library (v1.0.5) from [here](https://github.com/mikahama/natas/releases/tag/1.0.5), rename it to *natas* and move it to the working directory.
-3. Download the *ONMT* toolkit (v1.1.1) from [here](https://github.com/OpenNMT/OpenNMT-py/releases/tag/1.1.1), rename it to *onmt* and move it to the working directory.
-4. Download the *TRDG* toolkit (v1.6.0) from [here](https://github.com/Belval/TextRecognitionDataGenerator/releases/tag/v1.6.0), rename it to *trdg* and move it to the working directory.
+1. Download the *FLAIR* framework (v0.5) from [here](https://github.com/zalandoresearch/flair/releases/tag/v0.5), unzip it, rename it the *flair-0.5* directory to *flair*, and move it to the working directory.
+2. Download the *NATAS* library (v1.0.5) from [here](https://github.com/mikahama/natas/releases/tag/1.0.5), unzip it, rename it to *natas*, and move it to the working directory.
+3. Download the *ONMT* toolkit (v1.1.1) from [here](https://github.com/OpenNMT/OpenNMT-py/releases/tag/1.1.1), unzip it, rename it to *onmt*, and move it to the working directory.
+4. Download the *TRDG* toolkit (v1.6.0) from [here](https://github.com/Belval/TextRecognitionDataGenerator/releases/tag/v1.6.0), unzip it, rename it to *trdg*, and move it to the working directory.
 
 ### Data
 
@@ -189,7 +189,10 @@ Moreover, we can validate the generated data using the checksums distributed wit
 ```
 python3 main.py --mode ds_check --corpus <seq_lab_corpus>
 ```
-The resultant train/test/dev splits with the *_restored* suffix can be copied to the *resources/task* folder to be employed, e.g., for evaluation or training.
+The resultant train/test/dev splits with the *_restored* suffix can be copied to the *resources/task* folder to be employed, e.g., for evaluation or training. For example, we can use the following command to copy the restored *conll03_en_tess4_01* data set:
+```
+rsync -a resources/conversion/conll03_en_tess4_01/*_restored* resources/tasks/conll03_en_tess4_01/
+```
 
 #### Sequence-to-Sequence Model Training
 
