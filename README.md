@@ -58,9 +58,9 @@ The structure of the project reminds that from the original NAT framework with s
 
 Moreover, we extended the basic NAT framework by implementing our error generation methods and included it in the [extended sequence labeling model](./flair_ext/models/nat_sequence_tagger_model.py). Additionally, we modified the [trainer class](./flair_ext/trainers/trainer.py) and extended the former NAT functionality contained in [robust_ner](./robust_ner).
 
-Furthermore, we added additional data into the [resources}(./resources) directory including [dictionaries](./resources/dictionaries) extracted from the test sets of the sequence labeling benchmarks that were used by the error correction methods, [fonts](./resources/fonts) that were utilized by the text rendering module, and edit operations and checksums required to recreate and validate the noisy sequence labeling data sets used in our experiments (cf. [conversion](./resources/conversion)). 
+Furthermore, we added additional data into the [resources](./resources) directory including [dictionaries](./resources/dictionaries) extracted from the test sets of the sequence labeling benchmarks that were used by the error correction methods, [fonts](./resources/fonts) that were utilized by the text rendering module, and edit operations and checksums required to recreate and validate the noisy sequence labeling data sets used in our experiments (cf. [conversion](./resources/conversion)). 
 
-Note that *FLAIR*, *NATAS*, *ONMT* and *TRDG* are not included in this repository. See the [Quick Start section](README.md#getting-the-code) for more information about the installation of the additional dependencies.
+Note that *FLAIR*, *NATAS*, *ONMT* and *TRDG* are not included in this repository. See the [Quick Start section](README.md#project-dependencies) for more information about the installation of the additional dependencies.
 
 Please refer to the description of the remaining components [here](https://github.com/mnamysl/nat-acl2020#project-structure).
 
