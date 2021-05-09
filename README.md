@@ -21,7 +21,7 @@ Moreover, to better imitate the real-world application scenario, we generated a 
 
 The structure of the project reminds that from the original NAT framework with some differences (marked as [new] in the diagram below):
 
-```
+```bash
 ├── flair [extern]
 ├── flair_ext
 │   ├── models
@@ -71,12 +71,12 @@ Please refer to the description of the remaining components [here](https://githu
 ### Prerequisites
 
 1. Please install the python packages as shown below:
-```
+```bash
 pip install -r requirements.txt
 ```
 
 2. To use Hunspell, you need to install the [required packages](http://hunspell.github.io/):
-```
+```bash
 sudo apt-get install hunspell hunspell-en-us libhunspell-dev python-dev
 pip install hunspell
 ```
@@ -85,11 +85,11 @@ pip install hunspell
 
 4. If you experience problems installing *Matplotlib*, make sure that the *FreeType* library has been properly installed:
 
-```py
+```bash
 sudo apt-get install python-dev libfreetype6-dev
 ```
 If you get a following error: `ModuleNotFoundError: No module named 'tkinter'` at the end of the sequence-to-sequence model training then run the following command:
-```
+```bash
 sudo apt-get install python3-tk
 ```
 
@@ -161,14 +161,14 @@ The basic command-line calls can be found [here](https://github.com/mnamysl/nat-
 ####  Parallel Data Set Generation
 
 Assuming that the original *<text_corpus>* is stored in *resources/corpora/<text_corpus>*, the following call will run the parallel data generation procedure. The results will be stored in *results/generated/<text_corpus>* afterwards.
-```
+```bash
 python3 main.py --mode sent_gen_txt --text_corpus <text_corpus>
 ```
 
 #### Noisy Sequence Labeling Data Set Generation
 
 Similarly, the following command will read the sentences from the sequence labeling data set *<seq_lab_corpus>* in *resources/task/<seq_lab_corpus>*, render them, and store the results in *results/generated/<seq_lab_corpus>*.
-```
+```bash
 python3 main.py --mode sent_gen --corpus <seq_lab_corpus>
 ```
 We can move the resultant *<seq_lab_corpus>* to the *results/tasks* directory, so we can use it for evaluation or training.
@@ -176,7 +176,7 @@ We can move the resultant *<seq_lab_corpus>* to the *results/tasks* directory, s
 #### Preprocessing
 
 The parallel data set needs to be normalized prior to using it further. To this end, we apply the normalization script as follows:
-```
+```bash
 scripts/normalize-punctuation.sh <text_corpus>
 ```
 As before, we assume that the *<text_corpus>* is located under *results/generated/<text_corpus>*.
@@ -184,24 +184,24 @@ As before, we assume that the *<text_corpus>* is located under *results/generate
 #### Restoring the Noisy Data Sets
 
 To restore the noisy data sets used in our experiments, we execute the following command:
-```
+```bash
 python3 main.py --mode ds_restore --corpus <seq_lab_corpus>
 ```
 where the *<seq_lab_corpus>* is either *conll03_en* or *ud_en*. Our scripts will then recreate the underlying data based on the sequences of edit operations stored in *resources/conversion/<seq_lab_corpus>/<train/dev/test>_ops.txt*. 
 
 Moreover, we can validate the generated data using the checksums distributed with our library by running:
-```
+```bash
 python3 main.py --mode ds_check --corpus <seq_lab_corpus>
 ```
 The resultant train/test/dev splits with the *_restored* suffix can be copied to the *resources/task* folder to be employed, e.g., for evaluation or training. For example, we can use the following command to copy the restored *conll03_en_tess4_01* data set:
-```
+```bash
 rsync -a resources/conversion/conll03_en_tess4_01/*_restored* resources/tasks/conll03_en_tess4_01/
 ```
 
 #### Sequence-to-Sequence Model Training
 
 The normalized parallel data can be utilized to train a sequence-to-sequence error generation or correction model. The following command will start the procedure that splits the parallel data, converts it to the format used by ONMT and starts the training of the model:
-```
+```bash
 python3 main.py --mode onmt --text_corpus <text_corpus>
 ```
 
@@ -213,7 +213,7 @@ where *mode* is one of the following: *errgen_tok*, *errgen_ch*, or *errcorr_tok
 
 By default, the token-level error model will be trained. To change this behavior, e.g., to train the error correction model, we need to modify the code in the *onmt()* function in [main.py](./main.py) by uncommenting the line that corresponds to the option that we need, e.g.:
 
-```
+```python
 # mode = Seq2SeqMode.ErrorGenerationCh
 # mode = Seq2SeqMode.ErrorGenerationTok
 mode = Seq2SeqMode.ErrorCorrectionTok
@@ -223,7 +223,7 @@ mode = Seq2SeqMode.ErrorCorrectionTok
 
 Having the trained error generation model, we can utilize it to train a downstream sequence labeling model *<model_name>* using NAT technique. The following command will start the stability training of a *<model_name>* on the English CoNLL 2003 training data using the error generator model stored in *results/generated/<text_corpus>/model_errgen_tok_100k/<text_corpus>_step_16000.pt*, the token-to-token generation mode, the sampling temperature 1.1, and top-k = 10 best candidates.
 
-```
+```bash
 python3 main.py --mode train --model <model_name> --corpus conll03_en --type flair+glove --errgen_model results/generated/<text_corpus>/model_errgen_tok_100k/<text_corpus>_step_16000.pt --errgen_mode errgen_tok --errgen_temp 1.1 --errgen_topk 10 --beta 1.0
 ```
 
@@ -232,7 +232,7 @@ The models will be stored in the *resources/taggers* directory.
 ####  Noisy Corpus Extraction for Noisy Language Modeling (NLM)
 
 To extract the data for NLM training, we can use the following command:
-```
+```bash
 python3 main.py --mode noisy_crp --text_corpus <text_corpus>
 ```
 where the *<text_corpus>* refers to the data stored in *results/generated/<text_corpus>*. As a result, it will create two sub-directories: *<text_corpus>_pairs_norm_org\__<max_lines>* and *<text_corpus>_pairs_norm_rec\_<max_lines>*, where the former and the latter will contain the clean- and the noisy-part of the parallel text corpus, respectively. The *<max_lines>* parameter refers to the maximum number of lines that need to be extracted from the source text file and is unbounded by default, but it can be adjusted in the code if necessary.
@@ -243,7 +243,7 @@ To utilize the generated corpora for NLM training, you need to copy them to the 
 
 Previously extracted noisy corpus could be used as the source of text for NLM training. Except for the source of textual input, the NLM training follows the standard routines of the FLAIR library. For reference, please refer to the [instructions](https://github.com/flairNLP/flair/blob/master/resources/docs/TUTORIAL_9_TRAINING_LM_EMBEDDINGS.md) on how to prepare the data for the language model training. Subsequently, the NLM training can be performed using NAT framework with the following call:
 
-```
+```bash
 python3 main.py --mode train_lm --text_corpus <lm_text_corpus> --lm_type <lm_type> --model custom_<lm_type>
 ```
 where *<lm_text_corpus>* is the text corpus prepared for LM training located in the *resources/corpora* directory and *<lm_type>* refers to the type of a LM to be trained (either *forward* or *backward*). The results of this call will be stored in the *resources/language_models/custom_<lm_type>* directory.
@@ -253,7 +253,7 @@ where *<lm_text_corpus>* is the text corpus prepared for LM training located in 
 #### NAT Training using NLM Embeddings
 
 Previously trained NLM embeddings can be used to train a NAT model as follows:
-```
+```bash
 python3 main.py --mode train --corpus <data_set> --model <model_name> --type <embeddings_type>
 ```
 where *<embeddings_type>* refers to the type of embeddings to be employed - *myflair* and *myflair+glove* values are in-built aliases for the custom flair embedding models. Please refer to the *init_embeddings()* function in [main.py](./main.py) for further details. 
@@ -262,10 +262,28 @@ where *<embeddings_type>* refers to the type of embeddings to be employed - *myf
 
 Finally, we can utilize a specific error correction module for evaluation in the following way:
 
-```
+```bash
 python3 main.py --mode eval --model model_name --corpus conll03_en_tess4_01 --col_idx 2 --text_idx 1 --correction_module hunspell
 ```
 Additional remarks: *conll03_en_tess4_01* is a noisy data set generated using our approach and derived from the original English CoNLL 2003 benchmark. To utilize it we need to specify two additional parameters: *--col_idx* and *--text_idx* that represent the column index of the class labels and the text column, respectively. The first column in the generated noisy data sets always corresponds to the possibly erroneous text and the second column contains the error-free tokens. In the example above, we will use the noisy tokens.
+
+To use the *NATAS* module, please download the spacy model using the following command:
+
+```bash
+python -m spacy download en_core_web_md
+```
+
+You need to manually set the path to your trained sequence-to-sequence correction model as the default value for the parameter *model_path* in the function *correct_text_with_natas()* in [natas.py](./robust_ner/natas.py), e.g.:
+
+```Python
+def correct_text_with_natas(input, ext_dictionary=None, model_path="results/generated/1bilion/model_errcorr_tok_1M/1bilion_step_100000.pt", verbose=False):
+```
+
+Subsequently you can use your correction model as follows:
+
+```Bash
+python3 main.py --mode eval --model model_name --corpus conll03_en_tess4_01 --col_idx 2 --text_idx 1 --correction_module natas
+```
 
 
 
@@ -284,4 +302,3 @@ TBA
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
-
