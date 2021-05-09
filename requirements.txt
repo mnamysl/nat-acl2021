@@ -29,3 +29,6 @@ configargparse>=1.2.3
 scikit-learn>=0.21.3
 opencv-python==4.1.2.30
 tiny_tokenizer==3.0.1
+mikatools>=0.0.6
+spacy>=2.1.4
+distance
