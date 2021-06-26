@@ -2,7 +2,7 @@
 
 This repository contains the code and the data from the paper: "**Empirical Error Modeling Improves Robustness of Noisy Neural Sequence Labeling**" that was accepted to appear in Findings of [ACL 2021](https://2021.aclweb.org/). This work extends the Noise-Aware Training ([NAT](https://github.com/mnamysl/nat-acl2020)) framework.
 
-
+The pre-print version of our paper is available [**here**](https://arxiv.org/abs/2105.11872).
 
 ## Background
 
@@ -292,7 +292,14 @@ python3 main.py --mode eval --model model_name --corpus conll03_en_tess4_01 --co
 Please cite our paper when using the code:
 
 ```
-TBA
+@misc{namysl2021empirical,
+      title={Empirical Error Modeling Improves Robustness of Noisy Neural Sequence Labeling}, 
+      author={Marcin Namysl and Sven Behnke and Joachim Köhler},
+      year={2021},
+      eprint={2105.11872},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
+}
 ```
 
 ## Authors
