@@ -1,8 +1,6 @@
 # Empirical Error Modeling Improves Robustness of Noisy Neural Sequence Labeling
 
-This repository contains the code and the data from the paper: "**Empirical Error Modeling Improves Robustness of Noisy Neural Sequence Labeling**" that was accepted to appear in Findings of [ACL 2021](https://2021.aclweb.org/). This work extends the Noise-Aware Training ([NAT](https://github.com/mnamysl/nat-acl2020)) framework.
-
-The pre-print version of our paper is available [**here**](https://arxiv.org/abs/2105.11872).
+This repository contains the code and the data from the paper: [**Empirical Error Modeling Improves Robustness of Noisy Neural Sequence Labeling**](https://aclanthology.org/2021.findings-acl.27/) that was accepted to appear in [Findings of the Association for Computational Linguistics: ACL-IJCNLP 2021](https://2021.aclweb.org/). This work extends the Noise-Aware Training ([NAT](https://github.com/mnamysl/nat-acl2020)) framework.
 
 ## Background
 
@@ -292,13 +290,16 @@ python3 main.py --mode eval --model model_name --corpus conll03_en_tess4_01 --co
 Please cite our paper when using the code:
 
 ```
-@misc{namysl2021empirical,
-      title={Empirical Error Modeling Improves Robustness of Noisy Neural Sequence Labeling}, 
-      author={Marcin Namysl and Sven Behnke and Joachim Köhler},
-      year={2021},
-      eprint={2105.11872},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL}
+@inproceedings{namysl-etal-2021-empirical,
+    title = "Empirical Error Modeling Improves Robustness of Noisy Neural Sequence Labeling",
+    author = {Namysl, Marcin and Behnke, Sven and K{\"o}hler, Joachim},
+    booktitle = "Findings of the Association for Computational Linguistics: ACL-IJCNLP 2021",
+    month = aug,
+    year = "2021",
+    address = "Online",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2021.findings-acl.27",
+    pages = "314--329",
 }
 ```
 
